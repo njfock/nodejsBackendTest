@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(router);
 
 router.get('/message', function (req, res){
-    console.log(req.headers);
+    //console.log(req.headers);
     res.header({
         "custom-header": "Nuestro valor personalizado",
     });
@@ -17,13 +17,15 @@ router.get('/message', function (req, res){
 });
 
 router.post('/message', function (req, res){
-    console.log(req.query)
+    //console.log(req.query)
     if(req.query.error == 'ok'){
         response.error(req, res, 'Error simulado');
     } else {
         response.success(req, res, 'Mensaje '+req.body.text+' añadido correctamente', 201);
     }
 });
+
+app.use('/app', express.static('public'));
 
 app.listen(3000);
 console.log('La app escucha en http://localhost:3000');
